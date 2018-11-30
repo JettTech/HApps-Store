@@ -1,22 +1,4 @@
-agent.txt
-priv.key
-
-build/
-build-HApps/
-ui/
-dna/
+dist/
 node_modules/
-.dist/
-.cache/
-npm-debug.log
-HApps/
+target/
 
-# OS generated files #
-######################
-.tags*
-.DS_Store
-._*
-.Spotlight-V100
-.tags*
-.Trashes
-ehthumbs.db
