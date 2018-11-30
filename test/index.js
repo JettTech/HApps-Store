@@ -10,3 +10,4 @@ const app = Container.loadAndInstantiate("dist/bundle.json")
 app.start()
 require('./ratings_test')(app);
 require('./whoami_test')(app);
+require('./happs_test')(app);
