@@ -27,6 +27,11 @@ define_zome! {
                 outputs: |result: serde_json::Value|,
                 handler: z_fn::handle_creating_app
             }
+            get_allApps: {
+                inputs:| |,
+                outputs: |result: serde_json::Value|,
+                handler: z_fn::handle_getting_allApps
+            }
             adding_DNA: {
                 inputs:| app_hash:hdk::holochain_core_types::hash::HashString,dna_bundle:String |,
                 outputs: |result: serde_json::Value|,

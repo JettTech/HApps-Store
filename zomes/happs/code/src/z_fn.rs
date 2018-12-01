@@ -15,6 +15,22 @@ use crate::entry;
 /***
 Getter Functions
 ***/
+
+pub fn handle_getting_allApps()->JsonString{
+    match hdk::get_links(&AGENT_ADDRESS, "app_tag") {
+        Ok(result) => {
+            let addresses = result.addresses().clone();
+            let mut app_list:Vec<serde_json::Value> = Vec::new();
+            for address in addresses.iter() {
+                let k:String=get_entry(address.clone()).into();
+                app_list.push(serde_json::from_str(&k).unwrap());
+            }
+            app_list.into()
+         }
+        Err(hdk_error) => hdk_error.into(),
+    }
+}
+
 pub fn handle_getting_dna(app_hash:HashString) -> JsonString{
     match hdk::get_links(&app_hash, "dna_bundle_tag") {
         Ok(result) => {
