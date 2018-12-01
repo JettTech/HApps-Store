@@ -31,6 +31,10 @@ pub fn handle_getting_allApps()->JsonString{
     }
 }
 
+pub fn handle_getting_app(app_hash:HashString)->JsonString{
+    get_entry(app_hash.clone()).into()
+}
+
 pub fn handle_getting_dna(app_hash:HashString) -> JsonString{
     match hdk::get_links(&app_hash, "dna_bundle_tag") {
         Ok(result) => {

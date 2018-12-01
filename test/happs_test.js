@@ -37,8 +37,10 @@ module.exports = (app) => {
     t.equal(dna_bundle.dna_bundle, '{219y9c7b64290182b4c5710918732rbc79q8nxocbq4tboc7nqrfo83x}')
 
     t.plan(4)
-    const app_list = app.call('happs', "main", "get_allApps", {})
-    t.equal(app_list.length, 2)
-    console.log("All Apps : ",app_list);
+    const app_details = app.call('happs', "main", "get_app", {app_hash:app_address})
+    t.equal(app_details.uuid, '762934-19234-123495-12354')
+    console.log("App Details : ",app_details);
+
+
   })
 }
