@@ -9,13 +9,13 @@ extern crate serde_json;
 #[macro_use]
 extern crate holochain_core_types_derive;
 
-// see https://developer.holochain.org/api/0.0.2/hdk/ for info on using the hdk library
 pub mod entry;
 pub mod z_fn;
 
 define_zome! {
     entries: [
-        entry::definitions()
+        entry::app_definitions(),
+        entry::bundle_definitions()
     ]
 
     genesis: || { Ok(()) }
@@ -26,6 +26,16 @@ define_zome! {
                 inputs:| uuid:String,title:String,description:String,thumbnail:String |,
                 outputs: |result: serde_json::Value|,
                 handler: z_fn::handle_creating_app
+            }
+            adding_DNA: {
+                inputs:| app_hash:hdk::holochain_core_types::hash::HashString,dna_bundle:String |,
+                outputs: |result: serde_json::Value|,
+                handler: z_fn::handle_adding_DNA
+            }
+            getting_dna: {
+                inputs:| app_hash:hdk::holochain_core_types::hash::HashString|,
+                outputs: |result: serde_json::Value|,
+                handler: z_fn::handle_getting_dna
             }
         }
     }

@@ -11,5 +11,14 @@ module.exports = (app) => {
     t.plan(1)
     console.log("Creating App : ",app_address);
     t.equal(app_address.length, 46)
+
+    t.plan(2)
+    const dna_bundle_hash = app.call("happs","main","adding_DNA",{app_hash:app_address,dna_bundle:"{219y9c7b64290182b4c5710918732rbc79q8nxocbq4tboc7nqrfo83x}"})
+    t.equal(dna_bundle_hash.length,46)
+
+    t.plan(3)
+    const dna_bundle = app.call("happs","main","getting_dna",{app_hash:app_address})
+    t.equal(dna_bundle.dna_bundle,'{219y9c7b64290182b4c5710918732rbc79q8nxocbq4tboc7nqrfo83x}')
+
   })
 }
