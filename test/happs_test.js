@@ -38,7 +38,7 @@ module.exports = (app) => {
 
     t.plan(4)
     const app_details = app.call('happs', "main", "get_app", {app_hash:app_address})
-    t.equal(app_details.uuid, '762934-19234-123495-12354')
+    t.equal(app_details.uuid, App1.uuid)
     console.log("App Details : ",app_details);
 
 
