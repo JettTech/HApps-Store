@@ -39,6 +39,6 @@ module.exports = (app) => {
     t.plan(4)
     const app_list = app.call('happs', "main", "get_allApps", {})
     t.equal(app_list.length, 2)
-
+    console.log("All Apps : ",app_list);
   })
 }
