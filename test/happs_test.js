@@ -41,6 +41,18 @@ module.exports = (app) => {
     t.equal(app_details.uuid, App1.uuid)
     console.log("App Details : ",app_details);
 
+    t.plan(5)
+    const ui_bundle_hash = app.call("happs", "main", "adding_UI", {
+      app_hash: app_address,
+      ui_bundle: "{219y9c7b64290182b4c5710918732rbc79q8nxocbq4tboc7nqrfo83x}"
+    })
+    t.equal(ui_bundle_hash.length, 46)
+
+    t.plan(6)
+    const ui_bundle = app.call("happs", "main", "getting_ui", {
+      app_hash: app_address
+    })
+    t.equal(ui_bundle.ui_bundle, '{219y9c7b64290182b4c5710918732rbc79q8nxocbq4tboc7nqrfo83x}')
 
   })
 }

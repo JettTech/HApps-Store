@@ -21,6 +21,10 @@ pub struct App {
 pub struct DNA_Bundle {
     pub dna_bundle:String,
 }
+#[derive(Serialize, Deserialize, Debug, DefaultJson)]
+pub struct UI_Bundle {
+    pub ui_bundle:String,
+}
 
 pub fn app_definitions()-> ValidatingEntryType{
     entry!(
@@ -38,7 +42,7 @@ pub fn app_definitions()-> ValidatingEntryType{
     )
 }
 
-pub fn bundle_definitions()-> ValidatingEntryType{
+pub fn dna_bundle_definitions()-> ValidatingEntryType{
     entry!(
         name: "dna_code_bundle",
         description: "dna code bundel for the app",
@@ -49,6 +53,22 @@ pub fn bundle_definitions()-> ValidatingEntryType{
         },
 
         validation: |_app: DNA_Bundle, _ctx: hdk::ValidationData| {
+            Ok(())
+        }
+    )
+}
+
+pub fn ui_bundle_definitions()-> ValidatingEntryType{
+    entry!(
+        name: "ui_code_bundle",
+        description: "ui code bundel for the app",
+        sharing: Sharing::Public,
+        native_type: UI_Bundle,
+        validation_package: || {
+            hdk::ValidationPackageDefinition::ChainFull
+        },
+
+        validation: |_app: UI_Bundle, _ctx: hdk::ValidationData| {
             Ok(())
         }
     )

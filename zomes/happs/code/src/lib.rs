@@ -15,7 +15,8 @@ pub mod z_fn;
 define_zome! {
     entries: [
         entry::app_definitions(),
-        entry::bundle_definitions()
+        entry::dna_bundle_definitions(),
+        entry::ui_bundle_definitions()
     ]
 
     genesis: || { Ok(()) }
@@ -46,6 +47,16 @@ define_zome! {
                 inputs:| app_hash:hdk::holochain_core_types::hash::HashString|,
                 outputs: |result: serde_json::Value|,
                 handler: z_fn::handle_getting_dna
+            }
+            adding_UI: {
+                inputs:| app_hash:hdk::holochain_core_types::hash::HashString,ui_bundle:String |,
+                outputs: |result: serde_json::Value|,
+                handler: z_fn::handle_adding_UI
+            }
+            getting_ui: {
+                inputs:| app_hash:hdk::holochain_core_types::hash::HashString|,
+                outputs: |result: serde_json::Value|,
+                handler: z_fn::handle_getting_ui
             }
         }
     }

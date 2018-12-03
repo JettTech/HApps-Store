@@ -44,6 +44,15 @@ pub fn handle_getting_dna(app_hash:HashString) -> JsonString{
     }
 }
 
+pub fn handle_getting_ui(app_hash:HashString) -> JsonString{
+    match hdk::get_links(&app_hash, "ui_bundle_tag") {
+        Ok(result) => {
+            let addresses = result.addresses().clone();
+            get_entry(addresses[0].clone()).into()
+         }
+        Err(hdk_error) => hdk_error.into(),
+    }
+}
 
 /*
 Functions needed to be handeled by the HCHC
@@ -75,6 +84,14 @@ pub fn handle_adding_DNA(app_hash:HashString,dna_bundle:String)->JsonString{
     commit_n_link(bundle_entry,"dna_bundle_tag".into(),&app_hash).into()
 }
 
+pub fn handle_adding_UI(app_hash:HashString,ui_bundle:String)->JsonString{
+    let bundle_entry = Entry::new(EntryType::App("ui_code_bundle".into()),
+        entry::UI_Bundle {
+            ui_bundle: ui_bundle.to_string(),
+        }
+    );
+    commit_n_link(bundle_entry,"ui_bundle_tag".into(),&app_hash).into()
+}
 /***
 Coustom Function
 ***/
