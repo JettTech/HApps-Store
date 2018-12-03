@@ -31,7 +31,7 @@ define_zome! {
             get_allApps: {
                 inputs:| |,
                 outputs: |result: serde_json::Value|,
-                handler: happs_fn::handle_getting_allApps
+                handler: happs_fn::handle_getting_all_apps
             }
             get_app: {
                 inputs:|app_hash:hdk::holochain_core_types::hash::HashString|,

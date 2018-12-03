@@ -54,5 +54,10 @@ module.exports = (app) => {
     })
     t.equal(ui_bundle.ui_bundle, '{219y9c7b64290182b4c5710918732rbc79q8nxocbq4tboc7nqrfo83x}')
 
+    t.plan(7)
+    const allApp_details = app.call('happs', "main", "get_allApps", {})
+    t.equal(allApp_details.length , 2)
+    console.log("All Apps : ",allApp_details);
+
   })
 }

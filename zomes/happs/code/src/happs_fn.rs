@@ -15,14 +15,15 @@ use crate::entry;
 Getter Functions
 ***/
 
-pub fn handle_getting_allApps()->JsonString{
+pub fn handle_getting_all_apps()->JsonString{
     match hdk::get_links(&AGENT_ADDRESS, "app_tag") {
         Ok(result) => {
             let addresses = result.addresses().clone();
             let mut app_list:Vec<serde_json::Value> = Vec::new();
             for address in addresses.iter() {
-                let k:String=get_entry(address.clone()).into();
-                app_list.push(serde_json::from_str(&k).unwrap());
+                let address_entry:String=get_entry(address.clone()).into();
+                let entry_n_hash:String = json!({"Entry":address_entry,"Hash":address}).to_string();
+                app_list.push(serde_json::from_str(&entry_n_hash).unwrap());
             }
             app_list.into()
          }
@@ -69,10 +70,6 @@ pub fn handle_creating_app(uuid:String,title:String,description:String,thumbnail
     );
     //TODO: Link to an anchor nt AGENT_ADDRESS
     commit_n_link(app_entry,"app_tag".into(),&AGENT_ADDRESS).into()
-}
-
-pub fn handle_adding_UISkins(app_hash:HashString,ui_code:String){
-
 }
 
 pub fn handle_adding_DNA(app_hash:HashString,dna_bundle:String)->JsonString{
