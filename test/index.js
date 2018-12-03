@@ -8,6 +8,6 @@ const app = Container.loadAndInstantiate("dist/bundle.json")
 
 // activate the new instance
 app.start()
-require('./ratings_test')(app);
-require('./whoami_test')(app);
-require('./happs_test')(app);
+require('./unit_test/ratings_test')(app);
+require('./unit_test/whoami_test')(app);
+require('./unit_test/happs_test')(app);
