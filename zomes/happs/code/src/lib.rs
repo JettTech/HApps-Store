@@ -10,7 +10,7 @@ extern crate serde_json;
 extern crate holochain_core_types_derive;
 
 pub mod entry;
-pub mod z_fn;
+pub mod happs_fn;
 
 define_zome! {
     entries: [
@@ -26,37 +26,37 @@ define_zome! {
             create_app: {
                 inputs:| uuid:String,title:String,description:String,thumbnail:String |,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_creating_app
+                handler: happs_fn::handle_creating_app
             }
             get_allApps: {
                 inputs:| |,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_getting_allApps
+                handler: happs_fn::handle_getting_allApps
             }
             get_app: {
                 inputs:|app_hash:hdk::holochain_core_types::hash::HashString|,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_getting_app
+                handler: happs_fn::handle_getting_app
             }
             adding_DNA: {
                 inputs:| app_hash:hdk::holochain_core_types::hash::HashString,dna_bundle:String |,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_adding_DNA
+                handler: happs_fn::handle_adding_DNA
             }
             getting_dna: {
                 inputs:| app_hash:hdk::holochain_core_types::hash::HashString|,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_getting_dna
+                handler: happs_fn::handle_getting_dna
             }
             adding_UI: {
                 inputs:| app_hash:hdk::holochain_core_types::hash::HashString,ui_bundle:String |,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_adding_UI
+                handler: happs_fn::handle_adding_UI
             }
             getting_ui: {
                 inputs:| app_hash:hdk::holochain_core_types::hash::HashString|,
                 outputs: |result: serde_json::Value|,
-                handler: z_fn::handle_getting_ui
+                handler: happs_fn::handle_getting_ui
             }
         }
     }

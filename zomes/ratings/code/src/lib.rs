@@ -12,8 +12,8 @@ extern crate holochain_core_types_derive;
 #[macro_use]
 extern crate serde_json;
 
-pub mod fn_def;
-pub mod entries_def;
+pub mod ratings_fn;
+pub mod entry;
 
 use hdk::{
     holochain_core_types::{
@@ -24,7 +24,7 @@ use hdk::{
 
 define_zome! {
     entries: [
-     entries_def::definition()
+     entry::definition()
     ]
 
     genesis: || { Ok(()) }
@@ -34,12 +34,12 @@ define_zome! {
             create_ratings: {
                 inputs:| rate:String,review:String,reviewedHash:HashString |,
                 outputs: |result: serde_json::Value|,
-                handler: fn_def::handle_creating_ratings
+                handler: ratings_fn::handle_creating_ratings
             }
             get_ratings: {
                 inputs:| reviewedHash:HashString |,
                 outputs: |result: serde_json::Value|,
-                handler: fn_def::handle_get_reviews_by_hash
+                handler: ratings_fn::handle_get_reviews_by_hash
             }
         }
     }

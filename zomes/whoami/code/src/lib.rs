@@ -8,7 +8,7 @@ extern crate serde_derive;
 #[macro_use]
 extern crate holochain_core_types_derive;
 
-pub mod fn_def;
+pub mod whoami_fn;
 
 
 define_zome! {
@@ -24,7 +24,7 @@ define_zome! {
             get_user: {
                 inputs:| |,
                 outputs: |result: serde_json::Value|,
-                handler: fn_def::handle_get_agent
+                handler: whoami_fn::handle_get_agent
             }
         }
     }

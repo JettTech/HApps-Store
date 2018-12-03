@@ -9,7 +9,7 @@ use hdk::{
     api::AGENT_ADDRESS,
 };
 use hdk::error::ZomeApiError;
-use crate::entries_def;
+use crate::entry;
 use serde_json;
 
 #[derive(Serialize, Deserialize, Debug, DefaultJson)]
@@ -22,7 +22,7 @@ struct MultiAddressResponse {
 }
 pub fn handle_creating_ratings(rate:String,review:String,reviewedHash:HashString) -> JsonString {
     let ratings_entry = Entry::new(EntryType::App("ratings".into()),
-        entries_def::Ratings {
+        entry::Ratings {
             rate: rate.to_string(),
             review: review.to_string(),
             author: AGENT_ADDRESS.to_string().into(),
