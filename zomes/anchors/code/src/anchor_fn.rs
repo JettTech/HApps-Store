@@ -65,19 +65,18 @@ pub fn handle_creating_anchor(anchor_type:String,anchor_text:String)->JsonString
                                     }
                                 }
                             };
-                            hdk::debug("DEBUG:: anchor_type_base");
-                            hdk::debug(root_anchor_entry_address.clone());
+                            // hdk::debug("DEBUG:: anchor_type_base");
+                            // hdk::debug(root_anchor_entry_address.clone());
 
                             commit_n_link(anchor_type_base,anchor_type,&root_anchor_entry_address)
                         },
                         Err(hdk_error) => hdk_error.to_string().into(),
                     };
-                    // let anchor_type_base_address:HashString = anchor_type_base_address.to_string().into();
-                    hdk::debug("DEBUG:: anchor");
-                    hdk::debug(anchor_type_base_address.clone());
+                    // hdk::debug("DEBUG:: anchor");
+                    // hdk::debug(anchor_type_base_address.clone());
 
+                    // commit_n_link(anchor,"".into(),&anchor_type_base_address).into()
                     commit_n_link(anchor,anchor_text,&anchor_type_base_address).into()
-
                 },
                 Err(hdk_error) => hdk_error.into()
             }
@@ -110,7 +109,7 @@ pub fn handle_check_anchor_exist(anchor_type:String,anchor_text:String) -> JsonS
 
 pub fn handle_get_anchor_links(anchor_type:String)->JsonString{
 
-    hdk::debug(anchor_type.clone());
+    // hdk::debug(anchor_type.clone());
     let anchor:Entry = Entry::new(EntryType::App("anchor".into()),
         entry::Anchor {
             anchor_type:anchor_type.to_string(),
@@ -157,8 +156,8 @@ pub fn get_entry(post_address:HashString)-> JsonString {
 }
 
 pub fn commit_n_link(entry:Entry,entry_tag:String,base_hash:&HashString) -> HashString{
-    hdk::debug("entry_tag: ");
-    hdk::debug(entry_tag.clone());
+    // hdk::debug("entry_tag: ");
+    // hdk::debug(entry_tag.clone());
     match hdk::commit_entry(&entry) {
         Ok(address) => {
             let link_result = hdk::link_entries(
@@ -167,7 +166,7 @@ pub fn commit_n_link(entry:Entry,entry_tag:String,base_hash:&HashString) -> Hash
                 entry_tag
             );
             if link_result.is_err(){
-                hdk::debug(":::::::::::::HOLOCHAIN ERROR:::::::::::::");
+                // hdk::debug(":::::::::::::HOLOCHAIN ERROR:::::::::::::");
                 return "HOLOCHAIN_ERROR".into()
             }
             address.into()
