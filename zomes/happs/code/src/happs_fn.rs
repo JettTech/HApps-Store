@@ -90,7 +90,7 @@ pub fn handle_adding_UI(app_hash:HashString,ui_bundle:String)->JsonString{
     commit_n_link(bundle_entry,"ui_bundle_tag".into(),&app_hash).into()
 }
 /***
-Coustom Function
+Custom Function
 ***/
 pub fn commit_n_link(entry:Entry,entry_tag:String,base_hash:&HashString) -> JsonString{
     match hdk::commit_entry(&entry) {
