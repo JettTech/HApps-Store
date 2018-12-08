@@ -10,6 +10,7 @@ use hdk::error::ZomeApiError;
 
 use crate::entry;
 
+// TODO : used references insted of passing clones
 
 pub fn handle_creating_anchor(anchor_type:String,anchor_text:String)->JsonString{
 
