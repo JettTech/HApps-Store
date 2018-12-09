@@ -1,3 +1,4 @@
+// TODO: Get the categories of the a app hash/address
 use hdk::{
     holochain_core_types::{
         hash::HashString,
@@ -55,6 +56,7 @@ pub fn handle_get_apps_by_category(category:String)->JsonString{
     }
     // "whatever".into()
 }
+
 
 
 /*Anchor Calls*/
