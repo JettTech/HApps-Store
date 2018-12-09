@@ -20,8 +20,13 @@ define_zome! {
         main (Public) {
             add_category: {
                 inputs:| category:String,tag:String, hash:hdk::holochain_core_types::hash::HashString |,
-                outputs: | result: serde_json::Value |,
+                outputs: | result: JsonString |,
                 handler: categories_fn::handle_adding_category
+            }
+            get_apps_by_category: {
+                inputs:| category:String |,
+                outputs: | result: JsonString |,
+                handler: categories_fn::handle_get_apps_by_category
             }
         }
     }
