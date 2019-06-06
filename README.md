@@ -1,3 +1,8 @@
+## This Project has been moved to :
+https://github.com/holochain/HApps-Store
+
+---
+
 # HApps-Store
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Holo-Host/HApps-Store.svg)
